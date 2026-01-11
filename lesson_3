@@ -1,0 +1,46 @@
+import numpy as np
+
+# array2 = np.random.randint(2, 10, (3, 3))
+# print(array2)
+# array3 = array2 > 3
+# print(array3)
+
+# file = open("file.txt", "a")
+# file.write("Hello, Roy!\n")
+
+# file = open("file.txt", "r")
+# print(file.readlines())
+
+
+
+# count_hello_exercise.py
+
+filename = "my_text.txt"
+
+text = """Hello there!
+This is a test. Hello hello.
+HELLO? Hello!
+Not saying goodbye, only Hello.
+"""
+
+# w+ = write + read (creates file if it doesn't exist, overwrites if it does)
+with open(filename, "w+", encoding="utf-8") as file:
+    # write text into the file
+    file.write(text)
+
+    # IMPORTANT: after writing, the cursor is at the end of the file
+    # move cursor back to start before reading
+    file.seek(0)
+    # read file content
+    content = file.read()
+
+# count "Hello" as a word, case-insensitive, ignoring punctuation
+words = content.split()
+count = 0
+
+for word in words:
+    cleaned = word.strip(".,!?;:\"'()[]{}").lower()
+    if cleaned == "hello":
+        count += 1
+
+print(f'"Hello" appears {count} times in {filename}')
